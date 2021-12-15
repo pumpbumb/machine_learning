@@ -12,9 +12,9 @@ def compute_cost(X, y, theta):
 
 # 实现了θ的更新
 def gradient_descent(X, y, theta, alpha, iters):
-    temp = np.matrix(np.zeros(theta.shape))
-    parameters = int(theta.ravel().shape[1])
-    cost = np.zeros(iters)
+    temp = np.matrix(np.zeros(theta.shape))  # 创建1行2列的0矩阵
+    parameters = int(theta.ravel().shape[1])  # ravel()函数计算需要求解theta的参数个数，即2
+    cost = np.zeros(iters)  # 创建iters个0的数组
     for i in range(iters):
         error = (X * theta.T) - y
         for j in range(parameters):
@@ -38,7 +38,7 @@ data.plot(kind='scatter', x='Population', y='Profit', figsize=(12, 8))
 plt.show()
 
 # 初始化X和y
-cols = data.shape[1] # 计算data的第一维的长度，即97
+cols = data.shape[1]  # 获取data的列数
 X = data.iloc[:, :-1]  # X是data里的除最后列
 y = data.iloc[:, cols - 1:cols]  # y是data最后一列
 
@@ -46,7 +46,7 @@ y = data.iloc[:, cols - 1:cols]  # y是data最后一列
 # 我们还需要初始化theta。
 X = np.matrix(X.values)
 y = np.matrix(y.values)
-theta = np.matrix(np.array([0, 0]))
+theta = np.matrix(np.array([0, 0]))  # theta是一个1行2列的矩阵且都是0
 # print(X.shape, theta.shape, y.shape)  # 查看X y θ 的维度
 # print(computeCost(X, y, theta))  # 计算代价函数(θ初始值为0)，答案应该是32.07
 
