@@ -24,16 +24,12 @@ def gradient(theta, X, y):
     theta = np.matrix(theta)
     X = np.matrix(X)
     y = np.matrix(y)
-
     parameters = int(theta.ravel().shape[1])
     grad = np.zeros(parameters)
-
     error = sigmoid(X * theta.T) - y
-
     for i in range(parameters):
         term = np.multiply(error, X[:, i])
         grad[i] = np.sum(term) / len(X)
-
     return grad
 
 
@@ -44,15 +40,16 @@ data = pd.read_csv(path, header=None, names=['Exam 1', 'Exam 2', 'Admitted'])
 positive = data[data['Admitted'].isin([1])]
 negative = data[data['Admitted'].isin([0])]
 
+'''
+# 现在，我们要做一些设置，和我们在线性回归中很相似。
+'''
 # 加一列常数列
 data.insert(0, 'Ones', 1)
-
 # 初始化X，y，θ
 cols = data.shape[1]
 X = data.iloc[:, 0:cols - 1]
 y = data.iloc[:, cols - 1:cols]
 theta = np.zeros(3)
-
 # 转换X，y的类型
 X = np.array(X.values)
 y = np.array(y.values)
