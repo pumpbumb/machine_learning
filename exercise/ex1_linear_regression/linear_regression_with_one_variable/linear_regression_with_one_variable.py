@@ -1,3 +1,6 @@
+'''
+# 在这里，训练集、theta都是行向量的形式，假设函数是用x乘上theta的转置。
+'''
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -13,13 +16,13 @@ def compute_cost(X, y, theta):
 # 实现了θ的更新
 def gradient_descent(X, y, theta, alpha, iters):
     temp = np.matrix(np.zeros(theta.shape))  # 创建1行2列的0矩阵
-    parameters = int(theta.ravel().shape[1])  # ravel()函数计算需要求解theta的参数个数，即2
+    parameters = int(theta.ravel().shape[1])  # ravel()函数计算需要求解theta的参数个数，即2.
     cost = np.zeros(iters)  # 创建iters个0的数组
     for i in range(iters):
         error = (X * theta.T) - y
         for j in range(parameters):
             term = np.multiply(error, X[:, j])
-            temp[0, j] = theta[0, j] - ((alpha / len(X)) * np.sum(term))
+            temp[0, j] = theta[0, j] - ((alpha / len(X)) * np.sum(term))  # theta1和2更新
         theta = temp
         cost[i] = compute_cost(X, y, theta)
     return theta, cost
@@ -57,7 +60,7 @@ iterations = 1500
 # 现在让我们运行梯度下降算法来将我们的参数θ适合于训练集。
 g, cost = gradient_descent(X, y, theta, alpha, iterations)
 x = np.linspace(data.Population.min(), data.Population.max(), 100)
-f = g[0, 0] + (g[0, 1] * x)
+f = g[0, 0] + (g[0, 1] * x)  # 最终的假设函数
 
 # 原始数据以及拟合的直线
 fig, ax = plt.subplots(figsize=(12, 8))
