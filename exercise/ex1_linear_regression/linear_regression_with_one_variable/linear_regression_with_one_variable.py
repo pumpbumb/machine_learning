@@ -28,7 +28,7 @@ def gradient_descent(X, y, theta, alpha, iters):
 path = 'ex1_data1.txt'
 data = pd.read_csv(path, header=None, names=['Population', 'Profit'])
 # 让我们在训练集中添加一列，以便我们可以使用向量化的解决方案来计算代价和梯度。
-data.insert(0, 'Ones', 1)  # 在第0列插入1，列名为’Ones’，用于更新θo
+data.insert(0, 'Ones', 1)  # 在原第一列再插入1列且全为1，列名为’Ones’，用于更新θo
 
 # 画出训练集的数据图
 # figsize = (a, b)，其中figsize(即 figure size 的缩写)用来设置图形的大小，
