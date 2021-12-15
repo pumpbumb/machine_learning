@@ -27,9 +27,12 @@ def gradient_descent(X, y, theta, alpha, iters):
 # 将数据初步处理
 path = 'ex1_data1.txt'
 data = pd.read_csv(path, header=None, names=['Population', 'Profit'])
-data.insert(0, 'Ones', 1)  # 添加一列，用于更新θo
+# 让我们在训练集中添加一列，以便我们可以使用向量化的解决方案来计算代价和梯度。
+data.insert(0, 'Ones', 1)  # 在第0列插入1，列名为’Ones’，用于更新θo
 
 # 画出训练集的数据图
+# figsize = (a, b)，其中figsize(即 figure size 的缩写)用来设置图形的大小，
+# a为图形的宽， b为图形的高，单位为英寸。
 data.plot(kind='scatter', x='Population', y='Profit', figsize=(12, 8))
 plt.show()
 
@@ -37,10 +40,6 @@ plt.show()
 cols = data.shape[1]
 X = data.iloc[:, :-1]  # X是data里的除最后列
 y = data.iloc[:, cols - 1:cols]  # y是data最后一列
-'''
-print(X.head)  # 看一下X的n个特征
-print(y.head)  # 看一下y
-'''
 
 # 代价函数是应该是numpy矩阵，所以我们需要转换X和Y，然后才能使用它们。
 # 我们还需要初始化theta。
