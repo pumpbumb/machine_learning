@@ -26,7 +26,7 @@ def gradient_descent(X, y, theta, alpha, iters):
 # 读取数据
 path = 'ex1_data2.txt'
 data2 = pd.read_csv(path, header=None, names=['Size', 'Bedrooms', 'Price'])
-data2 = (data2 - data2.mean()) / data2.std()  # 特征归一化
+data2 = (data2 - data2.mean()) / data2.std()  # 特征归一化。有助于梯度下降算法更快的收敛。
 data2.insert(0, 'Ones', 1)  # 添加每个训练实例的第一个特征为1
 
 # 初始化X和y
