@@ -3,8 +3,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
-# 计算J(θ)，X是矩阵
+# 计算J(θ)，X是训练集矩阵，会从data中取出: X = data.iloc[:, :-1]，亦即X是data里的除最后列
 def compute_cost(X, y, theta):
+    # power(x, y) 函数，计算 x 的 y 次方。
     inner = np.power(((X * theta.T) - y), 2)
     return np.sum(inner) / (2 * len(X))
 
@@ -37,7 +38,7 @@ data.plot(kind='scatter', x='Population', y='Profit', figsize=(12, 8))
 plt.show()
 
 # 初始化X和y
-cols = data.shape[1]
+cols = data.shape[1] # 计算data的第一维的长度，即97
 X = data.iloc[:, :-1]  # X是data里的除最后列
 y = data.iloc[:, cols - 1:cols]  # y是data最后一列
 
